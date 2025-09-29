@@ -11,19 +11,27 @@ CREATE DATABASE IF NOT EXISTS `computershop` DEFAULT CHARACTER SET utf8mb4 COLLA
 USE `computershop`;
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `Id` int(11) NOT NULL,
   `UserName` varchar(30) DEFAULT NULL,
   `FullName` varchar(50) DEFAULT NULL,
   `Password` varchar(30) DEFAULT NULL,
   `Email` varchar(40) DEFAULT NULL,
   `RegTime` datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `UserName` (`UserName`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Salt` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`Id`, `UserName`, `FullName`, `Password`, `Email`, `RegTime`) VALUES
-(1, 'patrik', 'patrikt', 'alma', 'trencsanszkyp@kkszki.hu', '2025-09-29 08:06:49');
+INSERT INTO `users` (`Id`, `UserName`, `FullName`, `Password`, `Email`, `RegTime`, `Salt`) VALUES
+(1, 'patrik', 'patrikt', 'alma', 'trencsanszkyp@kkszki.hu', '2025-09-29 08:06:49', '');
+
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `UserName` (`UserName`);
+
+
+ALTER TABLE `users`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
