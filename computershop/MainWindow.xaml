@@ -13,7 +13,7 @@
                VerticalAlignment="Top" HorizontalContentAlignment="Center"
                FontSize="36" FontWeight="Bold" Foreground="#333"/>
 
-        <TextBox x:Name="username" HorizontalAlignment="Center" Margin="0,166,0,0"
+        <TextBox x:Name="UserName" HorizontalAlignment="Center" Margin="0,166,0,0"
                  Text="Username or Email" VerticalAlignment="Top"
                  Width="199" Height="36" FontSize="18" FontStyle="Italic"
                  Background="White" BorderBrush="#ccc" BorderThickness="1" Padding="4"/>
@@ -36,7 +36,7 @@
         </StackPanel>
 
 
-        <PasswordBox HorizontalAlignment="Center" Margin="0,236,0,0"
+        <PasswordBox x:Name="Pass" HorizontalAlignment="Center" Margin="0,236,0,0"
                      VerticalAlignment="Top" Width="200" Height="28"
                      Background="White" BorderBrush="#ccc" BorderThickness="1" Padding="4"/>
 
