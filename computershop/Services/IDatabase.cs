@@ -10,6 +10,9 @@ namespace computershop.Services
     {
         ICollection<object> GetAllData();
         object GetData(string username, string password);
+        object AddRecord(string username, string fullname, string email, string password);
+
+
 
 
     }

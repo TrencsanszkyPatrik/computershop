@@ -32,40 +32,9 @@ namespace computershop
             string email = emailBox.Text;
             string password = passwordBox.Password;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(fullname))
-            {
-                MessageBox.Show("Kérlek tölts ki minden mezőt!");
-                return;
-            }
-
-            Connect db = new Connect("users");
-
-            try
-            {
-                db.Connection.Open();
-
-                MySqlCommand cmd = new MySqlCommand(
-                    "INSERT INTO Users (Username,Fullname,  Email, Password) VALUES (@username, @FullName,  @email, @password)",
-                    db.Connection
-                );
-
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@FullName", fullname);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@password", password); 
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Sikeres regisztráció!");
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Hiba az adatbázisban: " + ex.Message);
-            }
-            finally
-            {
-                db.Connection.Close();
-            }
+            Services.IDatabase users = new Services.Users();
+            object res = users.AddRecord(username, fullname, email, password);
+            MessageBox.Show(res.ToString());
         }
 
         private void BackToLoginPage_click(object sender, RoutedEventArgs e)

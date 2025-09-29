@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using computershop.Services;
 
 namespace computershop;
 
@@ -24,6 +25,7 @@ public partial class MainWindow : Window
     }
 
     
+        IDatabase users = new Services.Users();
 
     private void registerPage(object sender, RoutedEventArgs e)
     {
@@ -33,44 +35,17 @@ public partial class MainWindow : Window
     }
 
     private void login(object sender, RoutedEventArgs e)
+
     {
+
         string username = UserName.Text;
         string password = Pass.Password;
 
-        if (CheckLogin(username, password))
-        {
-            MessageBox.Show("Sikeres belépés!");
-            Adminpage adminpage = new Adminpage();
-            adminpage.Show();
-            this.Close();
-        }
-        else
-        {
-            MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-        }
+        object res = users.GetData(username, password);
+        MessageBox.Show(res.ToString());
+
     }
 
-    private bool CheckLogin(string username, string password)
-    {
-
-        Connect db = new Connect("users");
-
-        db.Connection.Open(); 
-
-        MySqlCommand cmd = new MySqlCommand(
-            "SELECT COUNT(*) FROM Users WHERE Username=@username AND Password=@password",
-            db.Connection
-        );
-
-        cmd.Parameters.AddWithValue("@username", username);
-        cmd.Parameters.AddWithValue("@password", password);
-
-        int count = Convert.ToInt32(cmd.ExecuteScalar());
-        bool valid = count > 0;
-
-        db.Connection.Close();
-
-        return valid;
-    }
+    
 
 }
