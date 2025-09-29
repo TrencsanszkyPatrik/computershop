@@ -20,4 +20,18 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    
+
+    private void registerPage(object sender, RoutedEventArgs e)
+    {
+        RegisterWindow regWin = new RegisterWindow();
+        regWin.Show();
+        this.Hide();
+    }
+
+    private void login(object sender, RoutedEventArgs e)
+    {
+
+    }
 }
