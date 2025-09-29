@@ -1,7 +1,7 @@
 ﻿<Window x:Class="computershop.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RegisterPage" Height="707" Width="491"
+        Title="RegisterPage" Height="747" Width="508"
         WindowStartupLocation="CenterScreen"
         Background="#f4f6f9">
 

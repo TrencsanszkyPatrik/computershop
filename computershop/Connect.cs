@@ -18,7 +18,7 @@ namespace computershop
 
         private string ConnenctionString;
 
-        public Connect(string database)
+        public Connect()
         {
             _host = "localhost";
             _database = "computershop";

@@ -40,6 +40,9 @@ public partial class MainWindow : Window
         if (CheckLogin(username, password))
         {
             MessageBox.Show("Sikeres belépés!");
+            Adminpage adminpage = new Adminpage();
+            adminpage.Show();
+            this.Close();
         }
         else
         {
