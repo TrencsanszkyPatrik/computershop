@@ -67,5 +67,12 @@ namespace computershop
                 db.Connection.Close();
             }
         }
+
+        private void BackToLoginPage_click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWin = new MainWindow();
+            mainWin.Show();
+            this.Close();
+        }
     }
 }
