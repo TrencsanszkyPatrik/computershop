@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,20 +28,23 @@ namespace computershop.Services
 
 
             conn.Connection.Close();
-
+            
             return new { message = "sikeres" };
         }
 
-        public ICollection<object> GetAllData()
+        public DataView GetAllData()
         {
-            ICollection<object> data = new List<object>();
             conn.Connection.Open();
+            string sql = "SELECT * FROM users";
 
+            MySqlDataAdapter adapter = new(sql, conn.Connection);
+            DataTable dt = new DataTable();
 
+            adapter.Fill(dt);
 
             conn.Connection.Close();
 
-            return data;
+            return dt.DefaultView;
         }
 
         public object GetData(string username, string password)
@@ -59,6 +63,8 @@ namespace computershop.Services
             {
                 result = "Reagisztrált tag";
             } else result = "Nincs ilyen felhasználó";
+
+
 
             conn.Connection.Close();
 

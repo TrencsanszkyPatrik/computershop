@@ -43,6 +43,9 @@ public partial class MainWindow : Window
 
         object res = users.GetData(username, password);
         MessageBox.Show(res.ToString());
+        UserDatagrid userwind = new UserDatagrid();
+        userwind.Show();
+        
 
     }
 
