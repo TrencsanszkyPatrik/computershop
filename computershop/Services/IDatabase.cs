@@ -10,7 +10,7 @@ namespace computershop.Services
     interface IDatabase
     {
         DataView GetAllData();
-        object GetData(string username, string password);
+        bool GetData(string username, string password);
         object AddRecord(string username, string fullname, string email, string password);
 
 

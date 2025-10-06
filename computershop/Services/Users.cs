@@ -47,7 +47,7 @@ namespace computershop.Services
             return dt.DefaultView;
         }
 
-        public object GetData(string username, string password)
+        public bool GetData(string username, string password)
         {
             conn.Connection.Open();
 
@@ -57,18 +57,19 @@ namespace computershop.Services
             cmd.Parameters.AddWithValue("@password", password);
 
 
-            string result = "";
+            bool result = false;
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                result = "Reagisztrált tag";
-            } else result = "Nincs ilyen felhasználó";
+                result = true;
+            }
+            else result = false;
 
 
 
             conn.Connection.Close();
 
-            return new { message = result}
+            return result;
                
             ;
         }

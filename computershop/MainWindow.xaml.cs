@@ -41,10 +41,20 @@ public partial class MainWindow : Window
         string username = UserName.Text;
         string password = Pass.Password;
 
-        object res = users.GetData(username, password);
-        MessageBox.Show(res.ToString());
-        UserDatagrid userwind = new UserDatagrid();
-        userwind.Show();
+        bool res = users.GetData(username, password);
+
+        if(res)
+        {
+
+            MessageBox.Show("Sikeres bejelentkezés");
+            UserDatagrid userwind = new UserDatagrid();
+            userwind.Show();
+            this.Close();
+        }
+        else
+        {
+            MessageBox.Show("Sikertelen bejelentkezés!");
+        }
         
 
     }
